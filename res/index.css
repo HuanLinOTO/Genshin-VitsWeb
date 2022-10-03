@@ -1,0 +1,268 @@
+body {
+    margin: 0;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    background-color: white;
+    box-shadow: rgba(18, 18, 18, 0.1) 0px 1px 3px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    height: 56px;
+    width: 50%;
+    margin: 0 auto;
+    color: #0086d1;
+}
+
+.title,
+.question {
+    line-height: 56px;
+}
+
+.title {
+    font-size: larger;
+    font-weight: 700;
+}
+
+.container {
+    width: 50%;
+    margin: 10px auto;
+    min-height: 100%;
+}
+
+.container::before {
+    background-image: url(./background.png);
+    opacity: 0.3;
+    background-size: 20%;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.input-box {
+    resize: none;
+    padding: 4px;
+    width: 100%;
+    border: 2px solid rgb(221, 221, 224);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: .4s;
+}
+
+.input-box:focus {
+    transition: .4s;
+    outline: none;
+    border: 2px solid #0086d1;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    width: 102%;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.option {
+    display: flex;
+    width: 49%;
+    height: 38px;
+    border: 2px solid rgb(221, 221, 224);
+    justify-content: space-between;
+    line-height: 38px;
+    border-radius: 8px;
+    margin: 2px;
+    background-color: white;
+}
+
+.btns {
+    display: flex;
+    height: 42px;
+    align-items: center;
+}
+
+
+.tag {
+    display: flex;
+    justify-content: center;
+    width: 22%;
+    background-color: rgb(221, 221, 224);
+    border-radius: 4px 0 0 4px;
+}
+
+.selector {
+    width: 78%;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    transition: .4s;
+}
+
+.selector:focus {
+    outline: none;
+    border: 1px solid #0086d1;
+    transition: .4s;
+}
+
+.slide {
+    width: 50%;
+}
+
+.param {
+    border-radius: 0 4px 4px 0;
+}
+
+.produce {
+    height: 100%;
+    width: 10%;
+    background-color: #0086d1;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: .4s;
+    margin-right: 20px;
+    font-size: 1rem;
+}
+
+.produce:hover {
+    transition: .4s;
+    background-color: #066ba5;
+}
+
+.player {
+    height: 42px;
+    width: 36%;
+}
+
+.intro {
+    border-radius: 8px;
+    margin: 16px 0;
+    width: 100%;
+    padding: 16px 8px;
+    border: 1px solid #d0d7de;
+}
+
+.intro-item {
+    font-weight: 700;
+    border-bottom: 1px solid #d0d7de;
+    padding: 8px;
+}
+
+li {
+    padding: 4px;
+}
+
+.footer {
+    font-size: .875rem;
+    width: 100%;
+    color: #0086d1;
+}
+
+.designer,
+.source {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    color: #0086d1;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width:420px) {
+    .header {
+        justify-content: space-between;
+        margin: 0;
+    }
+
+    .nav{
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .container {
+        width: 84%;
+    }
+
+    .option {
+        width: 100%;
+    }
+
+    .btns {
+        justify-content: space-between;
+        flex-direction: column;
+        width: 100%;
+        height: 120px;
+    }
+
+    .produce,
+    .player {
+        height: 50px;
+        width: 100%;
+    }
+
+    .produce{
+        margin: 0;
+    }
+
+    .container::before {
+        background-image: url(./background.png);
+        opacity: 0.3;
+        background-size: 70%;
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        content: "";
+        right: 15%;
+        bottom: -30%;
+        z-index: -1;
+    }
+}
+.hl-loading {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background-color: #f5f5f5;
+    position: absolute;
+}
+.hl-loading-box {
+    /* .box{ */
+    /* width: 100vw; */
+    /* height: 100vh; */
+    /* background: paleturquoise; */
+    /* line-height:100vh; */
+    text-align: center;
+    /* } */
+}
+.hl-loading-text {
+    /* .box{ */
+    width: 100vw;
+    height: 100vh;
+    /* background: paleturquoise; */
+    line-height:100vh;
+    text-align: center;
+    /* } */
+}
+.hl-loading-btn {
+    border-color: red;
+    border-color: red;
+    background-color: darkgray;
+    border-radius: 33px;
+}
