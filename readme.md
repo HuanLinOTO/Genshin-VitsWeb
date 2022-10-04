@@ -84,7 +84,7 @@ pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trus
 >```
 
 > 如果你的电脑有显卡 <br>
-> [在这里选择自己的显卡型号，下载安装](https://www.nvidia.cn/Download/index.aspx?lang=cn#) <br>
+> [在这里选择自己的显卡型号，下载安装](https://developer.nvidia.com/cuda-11-6-0-download-archive) <br>
 > [在这里下载CUDNN,需要注册](https://developer.nvidia.com/rdp/cudnn-download) <br>
 > 复制 cuDNN bin 目录下的文件到 CUDA 的 bin 目录下（.dll） <br>
 > 复制 cuDNN include 目录下的文件到 CUDA 的 include 目录下（.h） <br>
