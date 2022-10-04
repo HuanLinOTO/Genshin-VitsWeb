@@ -1,5 +1,11 @@
 # Genshin-VitsWeb
 
+![pic](docs/pic.png)
+
+## Feature
+
+快速调用 Vits ;在 Web 生成语音
+
 ## 部署指南
 
 | 软件名      | 下载链接    |
@@ -8,11 +14,13 @@
 | Miniconda   | [点我下载](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe)        |
 如果你是小白 并且以上提及的几款软件你全都没装 [请看这里](install.md)
 
-### Step 1 创建环境
+### Step 1 创建环境并克隆本仓库
 ---
 ```
 conda create -n Genshin-Vits python=3.8 -y
 conda activate Genshin-Vits
+git clone https://github.com/HuanLinMaster/Genshin-VitsWeb
+cd Genshin-VitsWeb
 ```
 
 ### Step 2 安装 Nodejs
