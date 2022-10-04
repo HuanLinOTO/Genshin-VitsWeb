@@ -48,6 +48,7 @@ git clone --depth=1 http://gitclone.com/github.com/Stardust-minus/vits
 ### Step 4 安装 Vits 依赖及 Pytorch
 --- 
 去掉 ./vits/requirements.txt 中的 torchvision 那一行
+
 ```
 Cython==0.29.21
 librosa==0.8.0
@@ -61,6 +62,7 @@ Unidecode==1.1.1
 pypinyin
 pypinyin_dict
 jieba
+
 ```
 
 在 ./Vits 目录内执行
@@ -84,7 +86,7 @@ pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trus
 >```
 
 > 如果你的电脑有显卡 <br>
-> [在这里选择自己的显卡型号，下载安装](https://developer.nvidia.com/cuda-11-6-0-download-archive) <br>
+> [在这里选择自己的显卡型号，下载安装](https://www.nvidia.cn/Download/index.aspx?lang=cn#) <br>
 > [在这里下载CUDNN,需要注册](https://developer.nvidia.com/rdp/cudnn-download) <br>
 > 复制 cuDNN bin 目录下的文件到 CUDA 的 bin 目录下（.dll） <br>
 > 复制 cuDNN include 目录下的文件到 CUDA 的 include 目录下（.h） <br>
@@ -102,6 +104,18 @@ pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trus
 重启电脑！！！一定要重启！！！
 
 重启完了继续
+
+> 如果你报了以下错误 绝对是下面这步没做
+> ```
+ Traceback (most recent call last):
+  File "./gent.py", line 20, in <module>
+    from models import SynthesizerTrn
+  File "C:\Users\hello\Desktop\VitsWeb\vits\models.py", line 10, in <module>
+    import monotonic_align
+  File "C:\Users\hello\Desktop\VitsWeb\vits\monotonic_align\__init__.py", line 3, in <module>
+    from .monotonic_align.core import maximum_path_c
+ModuleNotFoundError: No module named 'monotonic_align.monotonic_align'
+> ```
 
 进入 ./vits/monotonic_align/ 目录 执行
 ```
