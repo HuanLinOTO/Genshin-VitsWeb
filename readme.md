@@ -31,6 +31,7 @@ conda install -c conda-forge nodejs
 
 ### Step 3 克隆 Vits 仓库并下载数据集
 ---
+##### 注: Vits 仓库是要在本项目目录下克隆的！！
 ```
 git clone --depth=1 https://github.com/Stardust-minus/vits
 ```
