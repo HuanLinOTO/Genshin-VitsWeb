@@ -48,7 +48,7 @@ git clone --depth=1 http://gitclone.com/github.com/Stardust-minus/vits
 --- 
 以下命令需要在 ./Vits 目录内执行
 ```
-pip install -r requirements.txt -i https://pypi.doubanio.com/simple/ --trusted-host pypi.doubanio.com
+pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 pip uninstall torch torchvision torchaudio
 ```
 
