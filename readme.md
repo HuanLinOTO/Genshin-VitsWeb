@@ -79,6 +79,8 @@ pip uninstall torch torchvision torchaudio
 
 安装Visual Studio2019的下面这些
 
+(MSVC安装v142版本的，截错图了)
+
 ![img](docs/vsi.png)
 
 重启电脑！！！一定要重启！！！
