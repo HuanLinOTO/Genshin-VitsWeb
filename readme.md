@@ -1,7 +1,7 @@
 # Genshin-VitsWeb
 
 ![pic](docs/pic.png)
-
+## 如果你想要使用懒人包 [请拉取DEV分支](https://github.com/HuanLinMaster/Genshin-VitsWeb/tree/dev)
 ## Feature
 
 快速调用 Vits ;在 Web 生成语音
