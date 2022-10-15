@@ -1,21 +1,27 @@
-# Genshin-VitsWeb
+# Genshin-VitsWeb 2
+~~想不到吧，一天就进2.0版本~~
+
+作者QQ 3509949348 简单问答不收费(开issue) 谨防被骗
 
 ![pic](docs/pic.png)
 
 ## Feature
 
-快速调用 Vits ;在 Web 生成语音
+快速调用 Vits ;在 Web 生成语音; 对参数进行唯一编码; 同参不重新生成; 全自动化部署    
 
 ## 部署指南
 
-| 软件名      | 下载链接    |
-| ----------- | ----------- |
-| Git         | [点我下载](https://ghproxy.com/github.com/git-for-windows/git/releases/download/v2.37.3.windows.1/Git-2.37.3-64-bit.exe)       |
-| Miniconda   | [点我下载](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe)        |
-如果你是小白 并且以上提及的几款软件你全都没装 [请看这里](install.md)
+| 软件          | 下载链接    |
+| -----------     | ----------- |
+| Nodejs          | [点我下载](https://npmmirror.com/mirrors/node/v16.17.0/node-v16.17.0-x64.msi)       |
+| VisualStudio2019| [点我查看教程](./docs/vs_2019install.md)       |
+| CUDA11.6+CUDNN (仅显卡部署需要)  | [点我查看教程](./docs/cuda_install.md)       |
+
+请确保你安装了上述软件后继续
 
 ### Step 1 创建环境并克隆本仓库
 ---
+在开始菜单找到Miniconda 进入后执行命令
 ```
 conda create -n Genshin-Vits python=3.8 -y
 conda activate Genshin-Vits
@@ -48,6 +54,22 @@ git clone --depth=1 http://gitclone.com/github.com/Stardust-minus/vits
 ### Step 4 安装 Vits 依赖及 Pytorch
 --- 
 去掉 ./vits/requirements.txt 中的 torchvision 那一行
+
+```
+Cython==0.29.21
+librosa==0.8.0
+matplotlib==3.3.1
+numpy==1.18.5
+phonemizer==2.2.1
+scipy==1.5.2
+tensorboard==2.3.0
+# torchvision==0.7.0
+Unidecode==1.1.1
+pypinyin
+pypinyin_dict
+jieba
+
+```
 
 在 ./Vits 目录内执行
 ```
@@ -88,6 +110,18 @@ pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trus
 重启电脑！！！一定要重启！！！
 
 重启完了继续
+
+> 如果你报了以下错误 绝对是下面这步没做
+> ```
+Traceback (most recent call last):
+  File "./gent.py", line 20, in <module>
+    from models import SynthesizerTrn
+  File "C:\Users\hello\Desktop\VitsWeb\vits\models.py", line 10, in <module>
+    import monotonic_align
+  File "C:\Users\hello\Desktop\VitsWeb\vits\monotonic_align\__init__.py", line 3, in <module>
+    from .monotonic_align.core import maximum_path_c
+ModuleNotFoundError: No module named 'monotonic_align.monotonic_align'
+```
 
 进入 ./vits/monotonic_align/ 目录 执行
 ```
