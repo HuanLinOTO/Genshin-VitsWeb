@@ -1,49 +1,26 @@
-import request from 'request';
-import path from 'path';
-import https from 'https';
+import inquirer from 'inquirer';
 
-import fs from 'fs';
-
-const SINGLE = 1024 * 1000;
-const SOURCE =
-	'https://obs.baimianxiao.cn/share/obs/sankagenkeshi/G_809000.pth';
-
-request(
-	{
-		method: 'HEAD',
-		uri: SOURCE,
-		rejectUnauthorized: false,
-	},
-	(err, res) => {
-		if (err) return console.error(err);
-		const file = './tmp/t.pth';
-		try {
-			fs.closeSync(fs.openSync(file, 'w'));
-		} catch (err) {
-			return console.error(err);
-		}
-		const size = Number(res.headers['content-length']);
-		const length = parseInt(size / SINGLE);
-		for (let i = 0; i < length; i++) {
-			let start = i * SINGLE;
-			let end = i == length ? (i + 1) * SINGLE - 1 : size - 1;
-			request({
-				method: 'GET',
-				uri: SOURCE,
-				headers: {
-					range: `bytes=${start}-${end}`,
-				},
-				rejectUnauthorized: false,
-			})
-				.on('response', (resp) => {
-					const range = resp.headers['content-range'];
-					// const match = /bytes ([0-9]*)-([0-9]*)/.exec(range);
-					// console.log(range);
-					// start = match[1];
-					// end = match[2];
-					console.log(start, end);
-				})
-				.pipe(fs.createWriteStream(file, { start, end }));
-		}
-	}
-);
+//inquirer.prompt(questions) -> promise
+// console.log(new RegExp('^[A-z]:\\\\(.+?\\\\)*$').test('D:Miniconda3/'));
+inquirer
+	.prompt([
+		{
+			type: 'input',
+			name: 'miniconda_path',
+			message: '请输入你想要把miniconda安装到哪个目录(不知道直接回车)',
+			default: 'D:\\Miniconda3\\',
+			validate(value, proAnswer) {
+				// console.log(value, proAnswer);
+				if (!new RegExp('^[A-z]:\\\\(.+?\\\\)*$').test(value)) {
+					return '请输入一个路径';
+				}
+				if (value.indexOf('/') != -1) {
+					return '输入的路径不能包含斜杠 请用反斜杠代替';
+				}
+				return true;
+			},
+		},
+	])
+	.then((answers) => {
+		console.log(answers);
+	});

@@ -3,4 +3,5 @@
 /dist
 /git
 /tmp
+/vs
 package-lock.json
