@@ -1,0 +1,10 @@
+{
+    "miniconda_path": "",
+    "git_install": false,
+    "miniconda_install": false,
+    "pip_req": false,
+    "torch": false,
+    "vits_repo": false,
+    "conda_env": false,
+    "monotonic_align": false
+}

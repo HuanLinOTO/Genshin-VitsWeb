@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { spawn } from 'child_process';
-import { statSync, mkdirSync, createWriteStream } from 'fs';
+import { statSync, mkdirSync, createWriteStream, stat } from 'fs';
 import { query } from 'windows-shortcuts';
 import { chdir, exit } from 'process';
 import { clearInterval } from 'timers';
@@ -18,6 +18,7 @@ var rc = process.argv[2] == '-rc';
 var finished = process.argv[2] == '-finished';
 var need_monotonic_align = process.argv[2] == '-monotonic_align';
 
+var status = JSON.parse(fs.readFileSync('./setup_status.json'));
 // debug = true;
 
 const download = (url, name, callback) => {
@@ -71,6 +72,7 @@ const gitclone = (url, options, callback) => {
 		silent: true,
 	});
 	git_process.on('exit', () => {
+		status.vits_repo = true;
 		console.log('[git] 仓库克隆完毕');
 		callback();
 	});
@@ -189,6 +191,7 @@ function miniconda_install(callback) {
 					miniconda_install_process.on('exit', () => {
 						console.log('miniconda已完成安装');
 						miniconda_path = miniconda_path.replaceAll('\\', '/');
+						status.miniconda_path = miniconda_path;
 						callback();
 					});
 				});
@@ -220,6 +223,7 @@ function activate_conda(callback) {
 			clearInterval(activater);
 			activater = null;
 			console.log('环境已搭建');
+			status.conda_env = true;
 			setTimeout(vits_install, 5000);
 		}
 		if (content.indexOf('[y]/n') != -1) {
@@ -230,10 +234,14 @@ function activate_conda(callback) {
 		}
 		if (content.indexOf('pipf') != -1 && !ispiploaded) {
 			ispiploaded = true;
+			status.pip_req = true;
 			Torch_install();
 		}
 		if (content.indexOf('torchf') != -1 && !istorchloaded) {
 			istorchloaded = true;
+			status.torch = true;
+
+			console.log('Pytorch安装完毕');
 			monotonic_align();
 		}
 		if (
@@ -277,10 +285,12 @@ function env_install(callback) {
 	git_install(() => {
 		install_task_cnt--;
 		console.log('Git完成安装 剩余任务', install_task_cnt);
+		status.git_install = true;
 	});
 	miniconda_install(() => {
 		install_task_cnt--;
 		console.log('Miniconda完成安装 剩余任务', install_task_cnt);
+		status.miniconda_install = true;
 	});
 	var waiter = setInterval(() => {
 		if (install_task_cnt == 0) {
@@ -290,9 +300,6 @@ function env_install(callback) {
 		}
 	}, 200);
 }
-// gitclone(
-//     ""
-// )
 env_install(() => {
 	console.log('完成环境安装');
 	console.log('正在进入conda环境');
@@ -330,10 +337,27 @@ function monotonic_align() {
 	conda_send('monotonic_alignff');
 }
 
+function download_pth(callback) {
+	axios({
+		method: 'get',
+		url: 'https://obs.baimianxiao.cn/share/obs/sankagenkeshi/G_809000.pth',
+		responseType: 'stream',
+	}).then(function (response) {
+		var wt = fs.createWriteStream('./vits/G_809000.pth');
+		response.pipe(wt);
+		wt.on('close', () => {
+			callback();
+		});
+	});
+}
+
 function runapp() {
-	console.log('已完成全部环境搭建 开始启动服务端');
-	conda_send('cd ../../');
-	debug = true;
-	conda_send('npm i');
-	conda_send('node app.js');
+	console.log('正在下载训练集');
+	download_pth(() => {
+		console.log('已完成全部环境搭建 开始启动服务端');
+		conda_send('cd ../../');
+		debug = true;
+		conda_send('npm i');
+		conda_send('node app.js');
+	});
 }
