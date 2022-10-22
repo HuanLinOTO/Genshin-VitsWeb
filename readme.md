@@ -1,8 +1,10 @@
 # Genshin-VitsWeb
 
 ![pic](docs/pic.png)
-## 如果你想要使用懒人包 [请拉取DEV分支](https://github.com/HuanLinMaster/Genshin-VitsWeb/tree/dev)
-## Feature
+## 前言 
+强烈建议使用 [DEV分支](https://github.com/HuanLinMaster/Genshin-VitsWeb/tree/dev) 进行安装 
+此方式下载 ```Node.js``` 后运行```node setup.js```即可
+## 功能
 
 快速调用 Vits ;在 Web 生成语音
 
@@ -105,23 +107,25 @@ pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trus
 
 重启完了继续
 
-> 如果你报了以下错误 绝对是下面这步没做
+### Step 5 安装monotonic_align
+
+> 如果你报了以下错误 绝对是这步没做
 > ```
- Traceback (most recent call last):
-  File "./gent.py", line 20, in <module>
-    from models import SynthesizerTrn
-  File "C:\Users\hello\Desktop\VitsWeb\vits\models.py", line 10, in <module>
-    import monotonic_align
-  File "C:\Users\hello\Desktop\VitsWeb\vits\monotonic_align\__init__.py", line 3, in <module>
-    from .monotonic_align.core import maximum_path_c
-ModuleNotFoundError: No module named 'monotonic_align.monotonic_align'
+> Traceback (most recent call last):
+>  File "./gent.py", line 20, in <module>
+>    from models import SynthesizerTrn
+>  File "C:\Users\hello\Desktop\VitsWeb\vits\models.py", line 10, in <module>
+>    import monotonic_align
+>  File "C:\Users\hello\Desktop\VitsWeb\vits\monotonic_align\__init__.py", line 3, in <module>
+>    from .monotonic_align.core import maximum_path_c
+>ModuleNotFoundError: No module named 'monotonic_align.monotonic_align'
 > ```
 
 进入 ./vits/monotonic_align/ 目录 执行
 ```
 python setup.py build_ext --inplace
 ```
-### Step 5 写入调用脚本
+### Step 6 写入调用脚本
 ---
 将下面的python文件写入 ./vits/gent.py (不存在 需自行创建) 内
 ```
