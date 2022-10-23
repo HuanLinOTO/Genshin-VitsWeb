@@ -191,6 +191,8 @@ function miniconda_install(callback) {
 					miniconda_install_process.on('exit', () => {
 						console.log('miniconda已完成安装');
 						miniconda_path = miniconda_path.replaceAll('\\', '/');
+						if (!miniconda_path.endsWith('\\'))
+							miniconda_path = miniconda_path + '/';
 						status.miniconda_path = miniconda_path;
 						callback();
 					});
@@ -205,6 +207,7 @@ function conda_send(sts, callback) {
 }
 
 function activate_conda(callback) {
+	console.log('正在创建环境');
 	console.log('cmd', [
 		'/K',
 		miniconda_path + 'Scripts/activate.bat',
