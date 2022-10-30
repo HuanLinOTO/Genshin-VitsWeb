@@ -4,5 +4,5 @@
 /git
 /tmp
 /vs
-/frontend
+/frontend/node_modules
 package-lock.json

@@ -1,0 +1,42 @@
+[
+    {
+        "type": "item",
+        "icon": "move_to_inbox",
+        "data": "主页",
+        "path": "index"
+    },
+    {
+        "type": "item",
+        "icon": "star",
+        "data": "调用统计",
+        "path": "statistics"
+    },
+    {
+        "type": "item",
+        "icon": "send",
+        "data": "调试工具",
+        "path": "devtool"
+    },
+    {
+        "type": "item",
+        "icon": "drafts",
+        "data": "商城",
+        "path": "store"
+    },
+    {
+        "type": "subheader",
+        "data": "不常用"
+    },
+    {
+        "type": "item",
+        "icon": "email",
+        "data": "信息",
+        "path": "message"
+    },
+    {
+        "type": "item",
+        "icon": "error",
+        "data": "关于",
+        "path": "info"
+    }
+]
