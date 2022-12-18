@@ -7,4 +7,4 @@
 
 ## Step 3
 到这一步的时候按照图上的选 可以改安装目录
-![vsi](docs/vsi.png)
+![vsi](../docs/vsi.png)
